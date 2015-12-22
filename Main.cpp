@@ -1,11 +1,9 @@
 // Dijkstra's Algorithm
-// Written to C++ by Martyr2
-// Dream In Code
+// Referensi:
+// www.coderslexicon.com/dijkstras-algorithm-for-c/
 
 #include <iostream>
 using namespace std;
-
-// http://www.coderslexicon.com/dijkstras-algorithm-for-c/
 
 // Define the levels of the graph
 const int KOTA = 5;
@@ -21,19 +19,19 @@ int main() {
 
 	int L[KOTA][KOTA] = {
 			/*     A   B   C   D   E  */
-			/*A*/{0,  6,  6,  3, 999}, 
-			/*B*/{999, 0, 999,  2,  4}, 
-			/*C*/{999, 999, 0,  5,  1}, 
-			/*D*/{999, 999, 999, 0,  4},
-			/*E*/{999, 999, 999, 999, 0} 			
+			/*A*/{0,  6,  6,  3, -1}, 
+			/*B*/{-1, 0, -1,  2,  4}, 
+			/*C*/{-1, -1, 0,  5,  1}, 
+			/*D*/{-1, -1, -1, 0,  4},
+			/*E*/{-1, -1, -1, -1, 0} 			
 			};
 
 	// An array to hold vertexes and full path distances
-	int Vertexes[KOTA];
-	int Dist[KOTA];
+	int Vertexes[KOTA]; // vertex / node
+	int Dist[KOTA];     // edge
 
 	// First we just set our vertexes to a count up to the number of
-	// levels. Here we label vertexes 0 through 7 (thus 8 levels)
+	// levels. Here we label vertexes 0 through 4 (thus 5 levels)
 	for (int i = 0; i < KOTA; i++) {
 		Vertexes[i] = i;
 	}
@@ -88,10 +86,10 @@ void Dijkstra(int *Vertexes, int *Dist, int L[KOTA][KOTA]) {
 	// our current shortest distance. If so, set the new shortest distance
 	// to minValue and label the node as the shortest
 	for (int i = 0; i < KOTA; i++) {
-		if (Vertexes[i] == -1) { continue; }
+		if (Vertexes[i] == -1) {continue; }
 		if (Dist[i] > 0 && Dist[i] < minValue) {
 			minValue = Dist[i];
-			minNode = i;
+			minNode = i;			
 		}
 	}
 
